@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Personal portfolio of Bibi Ayesha Akhter, Web Developer and Researcher." />
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<title>Bibi Ayesha Akhter | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { darkMode: "class", theme: { extend: {
+  fontFamily: { sans: ["Inter","sans-serif"], display: ["Playfair Display","serif"] },
+  colors: { ink:"#0f172a", moss:"#475569", sage:"#14b8a6", mist:"#e2e8f0", coral:"#0f766e", cream:"#f8fafc" },
+  boxShadow: { soft: "0 18px 50px rgba(15,23,42,.12)" } } } };
+</script>
+<style>
+body{font-family:"Inter",sans-serif;overflow-x:hidden}
+html{scroll-behavior:smooth}
+.hero-pattern{background-image:radial-gradient(circle at 12% 20%,rgba(20,184,166,.18),transparent 28%),radial-gradient(circle at 85% 12%,rgba(15,118,110,.15),transparent 26%),linear-gradient(135deg,rgba(248,250,252,.4),rgba(226,232,240,.3))}
+.blob{position:absolute;border-radius:9999px;filter:blur(70px);pointer-events:none;will-change:transform}
+.blob-1{width:340px;height:340px;background:rgba(20,184,166,.35);top:8%;left:-6%;animation:blobA 14s ease-in-out infinite alternate}
+.blob-2{width:300px;height:300px;background:rgba(15,118,110,.28);bottom:5%;right:-4%;animation:blobB 16s ease-in-out infinite alternate}
+.dark .blob{display:none}
+@keyframes blobA{to{transform:translate(90px,60px) scale(1.15)}}
+@keyframes blobB{to{transform:translate(-80px,-50px) scale(1.2)}}
+.dark .hero-pattern{background-image:radial-gradient(circle at 12% 20%,rgba(20,184,166,.2),transparent 28%),radial-gradient(circle at 85% 12%,rgba(148,163,184,.14),transparent 26%),linear-gradient(135deg,rgba(15,23,42,.35),rgba(30,41,59,.3))}
+.active-link{color:#0f766e!important}
+.nav-link{position:relative}
+.nav-link::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:#0f766e;transition:width .3s}
+.nav-link:hover::after,.nav-link.active-link::after{width:100%}
+.mobile-link::after{display:none}
+.reveal{opacity:0;translate:0 44px;scale:.95;transition:opacity .9s cubic-bezier(.22,1,.36,1),translate .9s cubic-bezier(.22,1,.36,1),scale .9s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;translate:0 0;scale:1}
+.float-soft{animation:fy 6s ease-in-out infinite}
+@keyframes fy{50%{transform:translateY(-12px)}}
+[id$="-modal"]:not(.hidden){animation:fi .3s ease}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;translate:0 0;scale:1}}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes counter{from{transform:rotate(calc(var(--a) * -1))}to{transform:rotate(calc(var(--a) * -1 - 360deg))}}
+@keyframes bf{50%{transform:translateY(-10px)}}
+.cg{display:grid;gap:1.25rem;grid-template-columns:minmax(0,20rem);--c2:1;--c3:1}
+@media (min-width:768px){.cg{grid-template-columns:repeat(var(--c2),minmax(0,20rem))}}
+@media (min-width:1024px){.cg{grid-template-columns:repeat(var(--c3),minmax(0,20rem))}}
+.px{transition:translate .3s ease-out}
+.ring{background:conic-gradient(from 0deg,#0f766e,#14b8a6,#38bdf8,rgba(56,189,248,0) 55%,#0f766e);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));animation:spin 6s linear infinite}
+.ring-glow{filter:blur(10px);opacity:.55}
+.orbit{--R:150px;animation:spin 28s linear infinite}
+@media (min-width:640px){.orbit{--R:205px}}
+.o-pos{position:absolute;left:-20px;top:-20px;width:40px;height:40px;transform:rotate(var(--a)) translateY(calc(var(--R) * -1))}
+.o-icon{display:flex;height:100%;width:100%;align-items:center;justify-content:center;transform:rotate(calc(var(--a) * -1));animation:counter 28s linear infinite}
+.badge{animation:bf 4s ease-in-out infinite}
+.hero-photo img{filter:saturate(.85) brightness(.97);transition:transform .6s cubic-bezier(.22,1,.36,1),filter .6s}
+.hero-photo:hover img{transform:scale(1.07);filter:saturate(1.15) brightness(1.05)}
+.hero-photo .glow{transition:opacity .6s,transform .6s}
+.hero-photo:hover .glow{opacity:1;transform:scale(1.12)}
+.grad-text{background:linear-gradient(90deg,#0f766e,#14b8a6,#38bdf8,#0f766e);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gm 7s linear infinite}
+@keyframes gm{to{background-position:250% 0}}
+.tilt{position:relative;transition:transform .2s ease-out,opacity .9s cubic-bezier(.22,1,.36,1),translate .9s cubic-bezier(.22,1,.36,1),scale .9s cubic-bezier(.22,1,.36,1),box-shadow .3s!important;will-change:transform}
+.tilt::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(20,184,166,.20),transparent 60%)}
+.tilt:hover::before{opacity:1}
+#cursor-ring{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid #14b8a6;border-radius:9999px;pointer-events:none;z-index:9999;opacity:0;transition:width .25s,height .25s,margin .25s,background .25s,opacity .3s}
+#cursor-ring.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(20,184,166,.12)}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;gap:14px;width:max-content;animation:mq 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.grad-text,.marquee-track,.ring,.orbit,.o-icon,.badge{animation:none!important}}
+</style>
+</head>
+<body class="bg-cream text-ink antialiased transition-colors duration-300 dark:bg-[#020617] dark:text-mist">
+<canvas id="particles" class="pointer-events-none fixed inset-0 z-0 h-full w-full"></canvas>
+
+<header class="fixed left-0 right-0 top-0 z-50 border-b border-ink/10 bg-cream/85 backdrop-blur-xl dark:border-white/10 dark:bg-[#0f172a]/85">
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10" aria-label="Primary navigation">
+    <a href="#home" class="font-display text-xl font-bold tracking-wide dark:text-white"><span class="text-coral">Bibi</span> Ayesha</a>
+    <div id="desktop-nav" class="hidden items-center gap-5 lg:flex"></div>
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white/70 transition hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/5" aria-label="Toggle dark mode">
+        <svg id="sun-icon" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg id="moon-icon" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      </button>
+      <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white/70 transition hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/5 lg:hidden" aria-label="Open menu">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div id="mobile-menu" class="hidden border-t border-ink/10 bg-cream px-5 py-4 dark:border-white/10 dark:bg-[#0f172a] lg:hidden"><div id="mobile-nav" class="mx-auto grid max-w-7xl gap-3"></div></div>
+</header>
+
+<main class="relative z-10">
+<!-- Hero -->
+<section id="home" class="hero-pattern relative flex min-h-screen overflow-hidden scroll-mt-24 items-center pt-24">
+  <div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+  <div class="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center justify-center gap-10 px-5 py-16 sm:px-8 lg:flex-row lg:gap-16">
+    <div class="reveal text-center lg:text-left">
+      <span class="inline-flex rounded-full border border-coral/25 bg-white/55 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-coral shadow-sm dark:bg-white/5"><span id="typed"></span><span class="ml-0.5 animate-pulse">|</span></span>
+      <h1 class="mt-6 font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl"><span class="grad-text">Bibi Ayesha Akhter</span></h1>
+      <p id="hero-desc" class="mt-4 max-w-lg whitespace-pre-line text-base font-medium leading-7 text-ink/75 dark:text-mist/80">A Computer Science graduate passionate about
+building useful technology through
+code, research, and curiosity.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+        <a href="cv.pdf" target="_blank" rel="noopener" class="rounded-full bg-coral px-7 py-3 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#115e59]">Resume</a>
+        <a href="#contact" class="rounded-full border border-coral px-7 py-3 text-sm font-bold text-coral transition hover:-translate-y-0.5 hover:bg-coral hover:text-white">Contact Me</a>
+      </div>
+    </div>
+    <div class="reveal shrink-0 lg:translate-x-8">
+      <div class="hero-photo float-soft relative h-64 w-64 sm:h-80 sm:w-80">
+        <div class="glow px absolute inset-0 rounded-full bg-sage/35 opacity-80 blur-2xl"></div>
+        <div class="ring ring-glow absolute -inset-[6px] rounded-full"></div>
+        <div class="ring absolute -inset-[6px] rounded-full"></div>
+        <div class="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-white/65 shadow-soft dark:bg-white/5">
+          <img src="a2.png" alt="Bibi Ayesha Akhter" class="h-[95%] w-[95%] rounded-full object-cover" />
+        </div>
+        <div class="px absolute left-1/2 top-1/2 h-0 w-0"><div class="orbit"><span class="o-pos" style="--a:30deg"><span class="o-icon"><span class="flex h-10 w-10 items-center justify-center rounded-full border border-coral/25 bg-white/75 text-coral shadow-soft backdrop-blur dark:bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></span></span></span><span class="o-pos" style="--a:120deg"><span class="o-icon"><span class="flex h-10 w-10 items-center justify-center rounded-full border border-coral/25 bg-white/75 text-coral shadow-soft backdrop-blur dark:bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14 0M8.5 16a6 6 0 0 1 7 0M2 8.8a15 15 0 0 1 20 0"/><circle cx="12" cy="20" r="1"/></svg></span></span></span><span class="o-pos" style="--a:210deg"><span class="o-icon"><span class="flex h-10 w-10 items-center justify-center rounded-full border border-coral/25 bg-white/75 text-coral shadow-soft backdrop-blur dark:bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span></span></span><span class="o-pos" style="--a:300deg"><span class="o-icon"><span class="flex h-10 w-10 items-center justify-center rounded-full border border-coral/25 bg-white/75 text-coral shadow-soft backdrop-blur dark:bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l3 9M16 7l-3 9M8.5 6h7"/></svg></span></span></span></div></div>
+        <span class="badge absolute -left-5 top-8 flex h-11 w-11 items-center justify-center rounded-full border border-white/50 bg-white/65 text-coral shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/10" style="animation-delay:0s"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+        <span class="badge absolute -right-6 top-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/50 bg-white/65 text-coral shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/10" style="animation-delay:1.2s"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+        <span class="badge absolute bottom-4 -left-1 flex h-11 w-11 items-center justify-center rounded-full border border-white/50 bg-white/65 text-coral shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/10" style="animation-delay:2.4s"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tools marquee -->
+<div class="marquee border-y border-ink/10 bg-white/40 py-5 dark:border-white/10 dark:bg-white/[0.02]"><div class="marquee-track"><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">MERN Stack</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Python</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Machine Learning</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">IoT</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">C++</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">PHP</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">HTML</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Bootstrap</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">OpenGL</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Tailwind CSS</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">MERN Stack</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Python</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Machine Learning</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">IoT</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">C++</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">PHP</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">HTML</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Bootstrap</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">OpenGL</span><span class="rounded-full border border-coral/25 bg-white/70 px-5 py-2 text-sm font-bold text-coral backdrop-blur dark:bg-white/5">Tailwind CSS</span></div></div>
+
+<!-- About + Skills -->
+<section id="about" class="scroll-mt-24 pt-24 pb-10">
+  <div class="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-10">
+    <div class="reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">About</p>
+      <h2 class="mt-3 font-display text-2xl font-bold dark:text-white sm:text-3xl">Tech with Purpose</h2>
+      <p class="mt-6 border-l-4 border-coral/40 pl-5 text-base leading-8 text-ink/70 dark:text-mist/75">I am a Computer Science undergraduate with a strong focus on Full-Stack Development using MERN stack and Python. Currently working as a Teaching Assistant at IIUC, I support research and assist students. I am also the co-founder of Make Me Pretty, a skincare initiative that provides beauty solutions. I am passionate about applying technology to real-world problems and constantly seeking opportunities to grow and collaborate in the tech and beauty industries.</p>
+      <div class="mt-8 grid grid-cols-3 gap-3"><div class="rounded-2xl border border-ink/10 bg-white/60 p-4 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"><p class="font-display text-3xl font-bold text-coral"><span data-count="7">0</span>+</p><p class="mt-1 text-xs font-semibold text-ink/65 dark:text-mist/65">Projects</p></div><div class="rounded-2xl border border-ink/10 bg-white/60 p-4 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"><p class="font-display text-3xl font-bold text-coral"><span data-count="3">0</span>+</p><p class="mt-1 text-xs font-semibold text-ink/65 dark:text-mist/65">Publications</p></div><div class="rounded-2xl border border-ink/10 bg-white/60 p-4 text-center shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"><p class="font-display text-3xl font-bold text-coral"><span data-count="6">0</span>+</p><p class="mt-1 text-xs font-semibold text-ink/65 dark:text-mist/65">Certifications</p></div></div>
+    </div>
+    <div class="reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Skills</p>
+      <h2 class="mt-3 font-display text-2xl font-bold dark:text-white sm:text-3xl">Core Skills</h2>
+      <div id="skills" class="mt-8 space-y-6"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section id="education" class="scroll-mt-24 py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Education</p>
+      <h2 class="mt-3 font-display text-2xl font-bold dark:text-white sm:text-3xl">Academic Background</h2>
+    </div>
+    <div id="education-grid" class="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="scroll-mt-24 bg-mist/55 py-24 dark:bg-white/[0.03]">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Projects</p>
+      <h2 class="mt-3 font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">Featured Projects</h2>
+    </div>
+    <div id="filters" class="mt-8 flex flex-wrap justify-center gap-2 lg:justify-center"></div>
+    <div id="project-scroller" class="relative mx-auto mt-10 h-[440px] w-full max-w-5xl select-none overflow-hidden" style="perspective:1100px;touch-action:pan-y"></div>
+    <div class="mt-2 flex justify-center gap-3">
+      <button id="proj-prev" type="button" aria-label="Previous project" class="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white text-lg font-bold transition hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/5">&larr;</button>
+      <button id="proj-next" type="button" aria-label="Next project" class="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white text-lg font-bold transition hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/5">&rarr;</button>
+    </div>
+  </div>
+  <div id="project-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink/70 p-4 backdrop-blur-sm" aria-hidden="true">
+    <div class="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-soft dark:bg-[#1e293b]" role="dialog" aria-modal="true">
+      <div class="sticky top-0 z-20 flex h-0 justify-end"><button type="button" aria-label="Close" class="modal-close mt-3 mr-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-lg font-bold text-ink shadow transition hover:bg-coral hover:text-white">&times;</button></div>
+      <div id="modal-img-wrap" class="w-full bg-mist dark:bg-white/10"><img id="modal-img" src="" alt="" class="max-h-[50vh] w-full object-cover" /></div>
+      <div class="p-6 sm:p-8">
+        <h3 id="modal-title" class="font-display text-2xl font-bold text-ink dark:text-white"></h3>
+        <p id="modal-desc" class="mt-4 text-sm leading-7 text-ink/72 dark:text-mist/75"></p>
+        <div id="modal-tags" class="mt-5 flex flex-wrap gap-2"></div>
+        <div class="mt-7 flex flex-wrap gap-3"><a id="modal-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center rounded-full bg-coral px-6 py-3 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#115e59]">View on GitHub</a><a id="modal-live" href="#" target="_blank" rel="noopener" style="display:none" class="items-center justify-center rounded-full border border-coral px-6 py-3 text-sm font-bold text-coral transition hover:-translate-y-0.5 hover:bg-coral hover:text-white">Live Website</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements" class="scroll-mt-24 py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Achievements</p>
+      <h2 class="mt-3 font-display text-2xl font-bold text-ink dark:text-white sm:text-3xl">Milestones & Research</h2>
+    </div>
+    <div class="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
+      <div class="open-modal group flex cursor-pointer flex-col items-center rounded-2xl border border-ink/10 bg-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-soft dark:border-white/10 dark:bg-[#1e293b]" data-target="award-modal" role="button" tabindex="0">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-coral/12 text-coral">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="9" r="6"/><path d="m8.5 14.5-1.5 7 5-3 5 3-1.5-7"/></svg>
+        </div>
+        <h3 class="mt-5 text-xl font-bold">Certifications</h3>
+        <p class="mt-2 text-sm text-ink/65 dark:text-mist/65">Courses and certificates I have earned.</p>
+        <p class="mt-5 text-xs font-bold text-coral">Click to view &rarr;</p>
+      </div>
+      <div class="open-modal group flex cursor-pointer flex-col items-center rounded-2xl border border-ink/10 bg-white p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-soft dark:border-white/10 dark:bg-[#1e293b]" data-target="pub-modal" role="button" tabindex="0">
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-coral/12 text-coral">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3 class="mt-5 text-xl font-bold">Publications</h3>
+        <p class="mt-2 text-sm text-ink/65 dark:text-mist/65">Research papers published in conferences.</p>
+        <p class="mt-5 text-xs font-bold text-coral">Click to view &rarr;</p>
+      </div>
+    </div>
+  </div>
+  <div id="award-modal" class="modal-overlay fixed inset-0 z-[60] hidden items-center justify-center bg-ink/70 p-4 backdrop-blur-sm">
+    <div class="relative max-h-[90vh] w-fit min-w-[min(20rem,100%)] max-w-[min(72rem,100%)] overflow-y-auto rounded-2xl bg-white p-6 shadow-soft dark:bg-[#1e293b] sm:p-8" role="dialog" aria-modal="true">
+      <div class="sticky top-0 z-20 flex h-0 justify-end"><button type="button" aria-label="Close" class="modal-close mt-3 flex h-9 w-9 items-center justify-center rounded-full bg-mist text-lg font-bold text-ink transition hover:bg-coral hover:text-white">&times;</button></div>
+      <h3 class="font-display text-2xl font-bold text-ink dark:text-white">Certifications</h3>
+      <div id="award-grid" class="cg mt-6"></div>
+    </div>
+  </div>
+  <div id="award-detail-modal" class="modal-overlay fixed inset-0 z-[70] hidden items-center justify-center bg-ink/80 p-4 backdrop-blur-sm">
+    <div class="relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-6 shadow-soft dark:bg-[#1e293b] sm:p-8" role="dialog" aria-modal="true">
+      <div class="sticky top-0 z-20 flex h-0 justify-end"><button type="button" aria-label="Close" class="modal-close mt-3 flex h-9 w-9 items-center justify-center rounded-full bg-mist text-lg font-bold text-ink transition hover:bg-coral hover:text-white">&times;</button></div>
+      <div class="w-full overflow-hidden rounded-xl bg-mist dark:bg-white/10"><img id="ad-img" src="" alt="" class="max-h-[60vh] w-full object-contain" onerror="this.parentElement.style.display='none'" /></div>
+      <div class="mt-6">
+        <span id="ad-badge" class="w-fit rounded-full bg-coral/12 px-3 py-1 text-xs font-bold text-coral"></span>
+        <h4 id="ad-title" class="mt-3 text-xl font-bold text-ink dark:text-white"></h4>
+        <p id="ad-second" class="mt-3 text-sm leading-6 text-ink/68 dark:text-mist/70"></p>
+        <p id="ad-issuer" class="mt-4 text-xs font-semibold text-moss dark:text-sage"></p>
+      </div>
+    </div>
+  </div>
+  <div id="pub-modal" class="modal-overlay fixed inset-0 z-[60] hidden items-center justify-center bg-ink/70 p-4 backdrop-blur-sm">
+    <div class="relative max-h-[90vh] w-fit min-w-[min(20rem,100%)] max-w-[min(72rem,100%)] overflow-y-auto rounded-2xl bg-white p-6 shadow-soft dark:bg-[#1e293b] sm:p-8" role="dialog" aria-modal="true">
+      <div class="sticky top-0 z-20 flex h-0 justify-end"><button type="button" aria-label="Close" class="modal-close mt-3 flex h-9 w-9 items-center justify-center rounded-full bg-mist text-lg font-bold text-ink transition hover:bg-coral hover:text-white">&times;</button></div>
+      <h3 class="font-display text-2xl font-bold text-ink dark:text-white">Publications</h3>
+      <div id="pub-grid" class="cg mt-6"></div>
+    </div>
+  </div>
+  <div id="pub-detail-modal" class="modal-overlay fixed inset-0 z-[70] hidden items-center justify-center bg-ink/80 p-4 backdrop-blur-sm">
+    <div class="relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-6 shadow-soft dark:bg-[#1e293b] sm:p-8" role="dialog" aria-modal="true">
+      <div class="sticky top-0 z-20 flex h-0 justify-end"><button type="button" aria-label="Close" class="modal-close mt-3 flex h-9 w-9 items-center justify-center rounded-full bg-mist text-lg font-bold text-ink transition hover:bg-coral hover:text-white">&times;</button></div>
+      <div class="w-full overflow-hidden rounded-xl bg-mist dark:bg-white/10"><img id="pd-img" src="" alt="" class="max-h-[60vh] w-full object-contain" onerror="this.parentElement.style.display='none'" /></div>
+      <div class="mt-6">
+        <span id="pd-badge" class="w-fit rounded-full bg-coral/12 px-3 py-1 text-xs font-bold text-coral"></span>
+        <h4 id="pd-title" class="mt-3 text-xl font-bold text-ink dark:text-white"></h4>
+        <p id="pd-second" class="mt-3 text-sm leading-6 text-ink/68 dark:text-mist/70"></p>
+        <p id="pd-issuer" class="mt-4 text-xs font-semibold text-moss dark:text-sage"></p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Experience -->
+<section id="experience" class="scroll-mt-24 bg-mist/55 py-24 dark:bg-white/[0.03]">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <div class="reveal mx-auto max-w-3xl text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Experience</p>
+      <h2 class="mt-3 font-display text-2xl font-bold dark:text-white sm:text-3xl">Leadership & Teaching</h2>
+    </div>
+    <div id="exp-grid" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="scroll-mt-24 bg-mist/55 pt-16 pb-20 dark:bg-white/[0.03]">
+  <div class="mx-auto grid max-w-5xl gap-8 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8 lg:px-10">
+    <div class="reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.22em] text-coral">Contact</p>
+      <h2 class="mt-3 font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">Let's connect.</h2>
+      <div class="mt-8 space-y-4 text-sm font-semibold text-ink/72 dark:text-mist/75">
+        <p>Email: <a class="text-coral hover:underline" href="mailto:ayeshahasan0907@gmail.com">ayeshahasan0907@gmail.com</a></p>
+        <p>Phone: <a class="text-coral hover:underline" href="tel:+8801644611916">+880 1644-611916</a></p>
+        <p>Location: Halishahar, Chattogram, Bangladesh</p>
+      </div>
+      <div class="mt-8 flex gap-3" aria-label="Social links">
+        <a href="https://github.com/ayeshaakhter01" class="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white text-ink transition hover:-translate-y-1 hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/5 dark:text-mist" aria-label="GitHub">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2A11.4 11.4 0 0 1 12 6.8c1 0 2 .1 3 .4 2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ayesha-akhter-473365338" class="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white text-ink transition hover:-translate-y-1 hover:border-coral hover:text-coral dark:border-white/10 dark:bg-white/5 dark:text-mist" aria-label="LinkedIn">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v12H3v-12Zm7 0h3.8v1.6h.1c.5-.9 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6v6.3h-4v-5.6c0-1.3 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.7h-4v-12Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div id="mail-trigger-wrap" class="reveal flex items-start justify-center -mt-4">
+      <button type="button" id="mail-trigger" aria-label="Open contact form" class="flex flex-col items-center gap-5 text-center">
+        <span id="mail-icon-float" class="flex h-64 w-64 items-center justify-center sm:h-72 sm:w-72">
+          <svg viewBox="0 0 100 100" class="h-full w-full -rotate-12 drop-shadow-xl" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 18 64 A 34 34 0 1 0 30 28" fill="none" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>
+            <path d="M 34 18 L 30 28 L 42 32 Z" fill="#0f766e"/>
+            <path d="M22 30 L78 30 L78 74 L22 74 Z" fill="#1e293b"/>
+            <path d="M22 30 L50 52 L78 30 Z" fill="#334155"/>
+            <path d="M22 74 L22 30 L50 52 Z" fill="#0f172a"/>
+            <path d="M78 74 L78 30 L50 52 Z" fill="#0f172a"/>
+            <circle cx="50" cy="48" r="15" fill="white"/>
+            <text x="50" y="54" font-size="20" font-weight="bold" text-anchor="middle" fill="#0f766e" font-family="Arial, sans-serif">@</text>
+          </svg>
+        </span>
+        <span class="text-sm font-bold text-ink dark:text-white">Tap to send a message</span>
+      </button>
+    </div>
+
+    <form id="contact-form" class="hidden rounded-2xl border border-ink/10 bg-white p-6 shadow-soft dark:border-white/10 dark:bg-[#1e293b]" action="https://formspree.io/f/maenwpjn" method="POST">
+      <h3 class="font-display text-xl font-bold text-ink dark:text-white mb-5">Let's Get in Touch</h3>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block"><span class="text-sm font-bold text-ink/75 dark:text-mist/75">Name</span>
+          <input type="text" name="name" required class="mt-2 w-full rounded-xl border border-ink/10 bg-cream px-4 py-3 text-sm outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10 dark:border-white/10 dark:bg-white/5" placeholder="Your name" /></label>
+        <label class="block"><span class="text-sm font-bold text-ink/75 dark:text-mist/75">Email</span>
+          <input type="email" name="email" required class="mt-2 w-full rounded-xl border border-ink/10 bg-cream px-4 py-3 text-sm outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10 dark:border-white/10 dark:bg-white/5" placeholder="your@email.com" /></label>
+      </div>
+      <label class="mt-5 block"><span class="text-sm font-bold text-ink/75 dark:text-mist/75">Message</span>
+        <textarea name="message" rows="6" required class="mt-2 w-full resize-none rounded-xl border border-ink/10 bg-cream px-4 py-3 text-sm outline-none transition focus:border-coral focus:ring-4 focus:ring-coral/10 dark:border-white/10 dark:bg-white/5" placeholder="Write your message"></textarea></label>
+      <input type="hidden" name="_subject" value="New portfolio message for Bibi Ayesha Akhter" />
+      <button id="submit-button" type="submit" class="mt-6 inline-flex w-full items-center justify-center rounded-full bg-coral px-6 py-3 text-sm font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#115e59] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto">Send Message</button>
+      <p id="form-status" class="mt-4 hidden text-sm font-semibold text-moss dark:text-mist/75"></p>
+    </form>
+  </div>
+</section>
+<style>
+  @keyframes mailFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  #mail-icon-float{animation:mailFloat 2.6s ease-in-out infinite}
+</style>
+</main>
+
+<footer class="relative z-10 border-t border-ink/10 bg-cream py-8 text-center dark:border-white/10 dark:bg-[#0f172a]">
+  <p class="text-sm font-semibold text-ink/65 dark:text-mist/65">© <span id="year"></span> Bibi Ayesha Akhter. All Rights Reserved</p>
+</footer>
+
+<!-- Generic modal -->
+<div id="modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-ink/70 p-4 backdrop-blur-sm">
+  <div class="relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl bg-white p-6 shadow-soft dark:bg-[#1e293b] sm:p-8" role="dialog" aria-modal="true">
+    <div class="sticky top-0 z-20 flex h-0 justify-end"><button id="modal-close" type="button" aria-label="Close" class="mt-3 flex h-9 w-9 items-center justify-center rounded-full bg-mist text-lg font-bold text-ink transition hover:bg-coral hover:text-white">&times;</button></div>
+    <span id="m-badge" class="rounded-full bg-coral/10 px-4 py-1.5 text-xs font-bold text-coral"></span>
+    <h3 id="m-title" class="mt-4 font-display text-2xl font-bold dark:text-white"></h3>
+    <p id="m-sub" class="mt-2 text-sm font-semibold text-moss dark:text-sage"></p>
+    <p id="m-desc" class="mt-4 whitespace-pre-line text-sm leading-7 text-ink/72 dark:text-mist/75"></p>
+    <div id="m-tags" class="mt-5 flex flex-wrap gap-2"></div>
+    <a id="m-link" href="#" target="_blank" rel="noopener" class="mt-7 hidden rounded-full bg-coral px-6 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-[#115e59]">View on GitHub</a>
+  </div>
+</div>
+
+<script>
+/* ================= DATA (edit here) ================= */
+const NAV = [["home","Home"],["about","About"],["education","Education"],["projects","Projects"],["achievements","Achievements"],["experience","Experience"],["contact","Contact"]];
+
+const SKILLS = {
+  "Technical": ["Full-Stack Development (MERN)", "Python", "JavaScript", "Machine Learning & AI", "IoT (Internet of Things)", "C", "C++", "PHP", "HTML", "CSS", "Bootstrap", "Tailwind CSS"],
+  "Professional": ["Research", "Digital Marketing", "Management & Teamwork", "Teaching & Presentation"]
+};
+
+const EDU = [
+  ["2022 - Present", "B.Sc. in Computer Science and Engineering", "International Islamic University Chittagong, Bangladesh", "CGPA: 3.846/4.00", ""],
+  ["2018", "Higher Secondary Certificate", "Cambrian College, Chittagong", "GPA: 5.00/5.00", ""],
+  ["2018", "Secondary School Certificate", "Hatey Khari School And College, Chittagong", "GPA: 4.83/5.00", ""]
+];
+
+const PROJECTS = [
+  {"t": "Make Me Pretty - MERN Stack E-commerce Website", "c": "mern", "y": "", "img": "mmp.jpg", "d": "A full-stack e-commerce website for skincare, body care, hair care, and makeup products. It is built with the MERN stack and supports three user roles: Customer, Admin, and Delivery Partner.", "tags": ["MERN Stack", "MongoDB", "Express.js", "React", "Node.js", "E-commerce"], "g": "https://github.com/ayeshaakhter01/Make_Me_Pretty", "l": "https://make-me-pretty.vercel.app/"},
+  {"t": "Driver Health Checking & Condition Assessment", "c": "iot ml", "y": "", "img": "1.jpg", "d": "Designed an IoT and Machine Learning-based system to monitor driver vital signs and assess physical condition in real-time to prevent accidents.", "tags": ["IoT", "Machine Learning", "Sensors"], "g": "https://github.com/ayeshaakhter01/DRIVER-HEALTH-CHECKING-AND-CONDITION-ASSESSMENT-USING-MACHINE-LEARNING-AND-IOT"},
+  {"t": "Network Traffic Classification", "c": "ml", "y": "", "img": "2.png", "d": "Implemented Machine Learning algorithms to analyze and classify network traffic packets for better security and bandwidth management.", "tags": ["Machine Learning", "Security", "Networking"], "g": "https://github.com/ayeshaakhter01/Network-Traffic-Classification-Using-Machine-Learning"},
+  {"t": "NFC Based Product Authentication System", "c": "iot", "y": "", "img": "figure5.png", "d": "Developed a product verification system using NFC tags to ensure authenticity using HTML, Bootstrap, PHP, and IoT integration.", "tags": ["HTML", "Bootstrap", "PHP", "IoT"], "g": "https://github.com/ayeshaakhter01/NFC-Based-Product-Authentication-System-using-HTML-Bootstrap-PHP-and-IOT."},
+  {"t": "Air Traffic Controller OS Simulator", "c": "os", "y": "", "img": "33.jpg", "d": "Developed an Operating System simulator demonstrating process scheduling and resource management within an Air Traffic Control environment.", "tags": ["OS", "Scheduling", "Simulation"], "g": "https://github.com/ayeshaakhter01/Air-Traffic-Controller-OS-operating-system-Simulator-"},
+  {"t": "Opti-Home Automation System", "c": "iot", "y": "", "img": "last.jpeg", "d": "Built a smart home automation system using IoT sensors and microcontrollers for remote device control and energy efficiency.", "tags": ["IoT", "Sensors", "Automation"], "g": "https://github.com/ayeshaakhter01/-Opti-Home-Automation-System-using-IOT"},
+  {"t": "A Beautiful Life Journey (Computer Graphics)", "c": "graphics", "y": "", "img": "4.png", "d": "Created a visual storytelling project using Computer Graphics (OpenGL/C++) to depict different stages of life through animation.", "tags": ["OpenGL", "C++", "Animation"], "g": "https://github.com/ayeshaakhter01/-Beautiful-Life-Journey-"}
+];
+const FILTERS = [["all", "All"], ["iot", "IoT"], ["ml", "Machine Learning"], ["mern", "MERN"], ["os", "OS"], ["graphics", "Graphics"]];
+
+const AWARDS = [
+  {"img": "c1.jpg", "badge": "2025", "title": "NASA Space Apps Challenge 2025", "desc": "Participated in the NASA International Space Apps Challenge 2025, a global hackathon solving real-world challenges using NASA's open data.", "issuer": "NASA International Space Apps Challenge"},
+  {"img": "c2.jpg", "badge": "2024", "title": "International Conference on Innovative in Science, Engineering and Technology", "desc": "Attended and contributed to ICISET-2024, an international conference focused on innovative research in science, engineering, and technology.", "issuer": "ICISET-2024"},
+  {"img": "c3.png", "badge": "2025", "title": "Milestone Achievement Certificate", "desc": "Awarded for reaching a key milestone achievement recognized by AppLink.", "issuer": "AppLink"},
+  {"img": "c4.jpg", "badge": "2025", "title": "Unlocking Innovation: Mastering Embedded Systems", "desc": "Completed a training session on embedded systems fundamentals, covering core concepts and hands-on innovation practices.", "issuer": "IEEE Robotics and Automation Society"},
+  {"img": "c5.jpg", "badge": "2025", "title": "App Development Crash Course", "desc": "Completed a crash course covering the fundamentals of app development, organized by IEEE Computer Society.", "issuer": "IEEE Computer Society"},
+  {"img": "c6.jpg", "badge": "2026", "title": "AI Seminar: Trust, Transparency, Optimization", "desc": "Participated in the AI Seminar \"Trust, Transparency, Optimization: Rethinking AI Systems for Real-World Adoption\", organized by IIUC Computer Club as part of IIUC CSE Fest 2026.", "issuer": "IIUC Computer Club, International Islamic University Chittagong"}
+];
+const PUBS = [
+  {"img": "p1.jpg", "badge": "2025", "title": "“IoT Enabled Driver Health Checking and Condition Assessment Using Machine Learning”", "authors": "Md. Sadman Hasan, Mohammed Jayed, Bibi Ayesha Akhter", "venue": "International Conference on Intelligent Data Analysis and Applications (IDAA)"},
+  {"img": "p2.jpg", "badge": "2025", "title": "“An Efficient NFC Blockchain Model For Detecting Counterfeit And Expired Products”", "authors": "Md. Sadman Hasan, Bibi Ayesha Akhter, Fahmida Yasmin, Zannatun Naim, Mr. Arafath Al Fahim", "venue": "International Conference on Intelligent Data Analysis and Applications (IDAA)"},
+  {"img": "p3.jpg", "badge": "2025", "title": "“Comparative Deep Learning Analysis of CNN, Transformer and Hybrid Architectures for Ovarian Condition Detection”", "authors": "Shadman Yaser, Baizid Kamruzzaman, Baizid MD Ashadzzaman, Mohammed Jayed, Md. Sadman Hasan, Bibi Ayesha Akhter", "venue": "28th International Conference on Computer and Information Technology (ICCIT), IEEE"}
+];
+
+const EXP = [
+  ["2021 - 2026", "Co-Founder, E-Commerce", "Make Me Pretty", "Co-founded the e-commerce platform providing authentic skincare products; managed daily operations, strategic marketing, and customer relations."],
+  ["2025 - 2026", "Teaching Assistant (TA)", "International Islamic University Chittagong (IIUC)", "2025: Provided academic support for Data Structure (CSE-2333), assisted in grading and classroom management.\n\n2026: Provided academic support for Software Engineering (CSE-3642) and Computer Graphics (CSE-4742), assisted in grading and classroom management."],
+  ["2025 - 2026", "Assistant Photographer", "IIUC Computer Club", "Covered club events and workshops, managing photography and visual documentation."],
+  ["2025", "Volunteer", "Youth's Voice, Bangladesh", "Supported community engagement and youth empowerment initiatives, helped organize events."]
+];
+
+/* ================= RENDER ================= */
+const $ = (s, r=document) => r.querySelector(s);
+const chip = "rounded-full bg-mist px-3 py-1 text-xs font-bold text-moss dark:bg-white/10 dark:text-sage";
+const card = "reveal cursor-pointer rounded-2xl border border-ink/10 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-coral/40 hover:shadow-soft dark:border-white/10 dark:bg-white/5";
+
+$("#desktop-nav").innerHTML = NAV.map(([id,l]) => `<a class="nav-link text-xs font-semibold uppercase tracking-wide text-ink/70 transition hover:text-coral dark:text-mist/75" href="#${id}">${l}</a>`).join("");
+$("#mobile-nav").innerHTML = NAV.map(([id,l]) => `<a class="nav-link mobile-link rounded-lg px-3 py-2 text-sm font-semibold text-ink/75 hover:bg-mist hover:text-coral dark:text-mist/75 dark:hover:bg-white/10" href="#${id}">${l}</a>`).join("");
+
+$("#skills").innerHTML = Object.entries(SKILLS).map(([g,list]) =>
+  `<div><p class="text-sm font-bold text-coral">${g}</p><div class="mt-2 flex flex-wrap gap-2">${list.map(s=>`<span class="${chip}">${s}</span>`).join("")}</div></div>`).join("");
+
+$("#education-grid").innerHTML = EDU.map(e =>
+  `<article class="reveal rounded-2xl border border-ink/10 bg-white p-5 text-center shadow-sm dark:border-white/10 dark:bg-[#1e293b]">
+    <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-coral">${e[0]}</p>
+    <h3 class="mt-3 text-base font-bold">${e[1]}</h3>
+    <p class="mt-2 text-xs font-semibold text-moss dark:text-sage">${e[2]}</p>
+    <p class="mt-4 rounded-xl bg-mist px-3 py-2 text-xs font-bold text-ink/75 dark:bg-white/10 dark:text-mist">${e[3]}</p>
+    ${e[4] ? `<p class="mt-3 text-xs leading-5 text-ink/65 dark:text-mist/70">${e[4]}</p>` : ""}
+  </article>`).join("");
+
+const fbtn = (k,l,a) => `<button type="button" data-f="${k}" class="filter-btn rounded-full border px-4 py-1.5 text-xs font-bold transition hover:border-coral hover:text-coral ${a?"active border-coral text-coral":"border-ink/15 text-ink/65 dark:border-white/15 dark:text-mist/65"}">${l}</button>`;
+$("#filters").innerHTML = FILTERS.map(([k,l],n) => fbtn(k,l,n===0)).join("");
+$("#project-scroller").innerHTML = PROJECTS.map((p,i) =>
+  `<div class="project-card group absolute left-1/2 top-4 w-64 cursor-pointer overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-sm dark:border-white/10 dark:bg-[#1e293b] sm:w-72" role="button" tabindex="0" data-i="${i}" data-category="${p.c}">
+    <div class="h-40 w-full overflow-hidden bg-mist dark:bg-white/10"><img src="${p.img}" alt="${p.t}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.parentElement.style.display='none'" /></div>
+    <div class="p-5">
+      <h3 class="line-clamp-2 text-lg font-bold">${p.t}</h3>
+      <p class="mt-2 line-clamp-2 text-sm leading-6 text-ink/68 dark:text-mist/70">${p.d}</p>
+      <p class="mt-4 text-xs font-bold text-coral">Click to view details &rarr;</p>
+    </div></div>`).join("");
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest(".filter-btn"); if (!b) return;
+  document.querySelectorAll(".filter-btn").forEach(x => { const on = x === b;
+    x.classList.toggle("active", on); x.classList.toggle("border-coral", on); x.classList.toggle("text-coral", on);
+    ["border-ink/15","text-ink/65","dark:border-white/15","dark:text-mist/65"].forEach(c => x.classList.toggle(c, !on)); });
+  const f = b.dataset.f;
+  document.querySelectorAll(".project-card").forEach(c => c.style.display = (f === "all" || c.dataset.category.split(" ").includes(f)) ? "" : "none");
+  active = 0; layout();
+});
+
+[["award-grid",AWARDS.length],["pub-grid",PUBS.length]].forEach(([id,n]) => { const g = $("#"+id); g.style.setProperty("--c2", Math.min(n,2)); g.style.setProperty("--c3", Math.min(n,3)); });
+const certCard = (o,i,key,sub,foot) =>
+  `<div class="cert-card flex cursor-pointer flex-col overflow-hidden rounded-xl border border-ink/10 bg-white transition hover:-translate-y-0.5 hover:shadow-soft dark:border-white/10 dark:bg-white/5" data-k="${key}" data-i="${i}">
+    <div class="flex h-40 w-full items-center justify-center overflow-hidden bg-mist dark:bg-white/10"><img src="${o.img}" alt="${o.title}" class="h-full w-full object-contain" onerror="this.parentElement.style.display='none'" /></div>
+    <div class="flex flex-1 flex-col p-5">
+      <span class="w-fit rounded-full bg-coral/12 px-3 py-1 text-xs font-bold text-coral">${o.badge}</span>
+      <h4 class="mt-3 text-base font-bold">${o.title}</h4>
+      <p class="mt-3 flex-1 text-sm leading-6 text-ink/68 dark:text-mist/70">${sub}</p>
+      <p class="mt-4 text-xs font-semibold text-moss dark:text-sage">${foot}</p>
+    </div></div>`;
+$("#award-grid").innerHTML = AWARDS.map((o,i) => certCard(o,i,"a",o.desc,o.issuer)).join("");
+$("#pub-grid").innerHTML = PUBS.map((o,i) => certCard(o,i,"p",o.authors,o.venue)).join("");
+
+$("#exp-grid").innerHTML = EXP.map((e,i) =>
+  `<div class="${card}" data-e="${i}" role="button" tabindex="0">
+    <span class="rounded-full bg-coral/10 px-3 py-1 text-xs font-bold text-coral">${e[0]}</span>
+    <h3 class="mt-4 text-base font-bold">${e[1]}</h3>
+    <p class="mt-1 text-sm font-semibold text-moss dark:text-sage">${e[2]}</p>
+    <p class="mt-4 text-xs font-bold text-coral">Click to view details &rarr;</p></div>`).join("");
+
+document.querySelectorAll(".fixed.inset-0").forEach(m => document.body.appendChild(m));
+
+/* ================= MODAL ================= */
+const modal = $("#modal");
+function openModal({badge,title,sub,desc,tags=[],link=""}) {
+  $("#m-badge").textContent = badge; $("#m-badge").style.display = badge ? "" : "none";
+  $("#m-title").textContent = title; $("#m-sub").textContent = sub || "";
+  $("#m-desc").textContent = desc;
+  $("#m-tags").innerHTML = tags.map(t => `<span class="${chip}">${t}</span>`).join("");
+  const a = $("#m-link"); a.classList.toggle("hidden", !link); a.classList.toggle("inline-flex", !!link); a.href = link || "#";
+  modal.classList.remove("hidden"); modal.classList.add("flex"); document.body.style.overflow = "hidden";
+}
+function closeModal() { modal.classList.add("hidden"); modal.classList.remove("flex"); document.body.style.overflow = ""; }
+$("#modal-close").onclick = closeModal;
+modal.onclick = e => { if (e.target === modal) closeModal(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+/* nested modal stack (projects, awards, publications) */
+const stack = [];
+function openEl(el){ el.classList.remove("hidden"); el.classList.add("flex"); document.body.style.overflow="hidden"; stack.push(el); }
+function closeEl(el){ el.classList.add("hidden"); el.classList.remove("flex"); const i=stack.indexOf(el); if(i>-1) stack.splice(i,1); if(!stack.length) document.body.style.overflow=""; }
+document.querySelectorAll(".open-modal").forEach(b => { const go=()=>openEl($("#"+b.dataset.target)); b.addEventListener("click",go); b.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();go();} }); });
+document.querySelectorAll(".modal-overlay, #project-modal").forEach(o => { o.addEventListener("click", e => { if (e.target === o) closeEl(o); }); o.querySelectorAll(".modal-close").forEach(b => b.addEventListener("click", () => closeEl(o))); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && stack.length) closeEl(stack[stack.length-1]); });
+
+function openProject(card){
+  const p = PROJECTS[card.dataset.i], wrap = $("#modal-img-wrap"), img = $("#modal-img");
+  wrap.style.display = ""; img.onerror = () => { wrap.style.display = "none"; };
+  img.src = card.querySelector("img").getAttribute("src"); img.alt = p.t;
+  $("#modal-title").textContent = p.t; $("#modal-desc").textContent = p.d;
+  $("#modal-tags").innerHTML = p.tags.map(t => `<span class="${chip}">${t}</span>`).join("");
+  const a = $("#modal-link"); a.style.display = p.g ? "" : "none"; a.href = p.g || "#";
+  const lv = $("#modal-live"); lv.style.display = p.l ? "inline-flex" : "none"; lv.href = p.l || "#";
+  openEl($("#project-modal"));
+}
+/* ===== 3D coverflow carousel ===== */
+const stage = $("#project-scroller"), pcards = [...document.querySelectorAll(".project-card")];
+let active = 0, timer = null, hovering = false, inView = false, moved = false;
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const vis = () => pcards.filter(c => c.style.display !== "none");
+function layout() {
+  const v = vis(), n = v.length, sp = Math.min(230, stage.clientWidth * 0.3);
+  pcards.forEach(c => { if (!v.includes(c)) c.style.pointerEvents = "none"; });
+  v.forEach((c, k) => {
+    let d = k - active; d = ((d % n) + n) % n; if (d > n / 2) d -= n;
+    const a = Math.abs(d), s = Math.sign(d);
+    c.style.transition = "transform .8s cubic-bezier(.22,1,.36,1), opacity .8s ease, filter .8s ease, box-shadow .8s ease";
+    c.style.transform = `translateX(-50%) translateX(${d * sp}px) translateZ(${-a * 150}px) scale(${1 - a * 0.1})`;
+    c.style.opacity = a > 2 ? 0 : 1 - a * 0.18;
+    c.style.zIndex = 100 - a * 10;
+    c.style.filter = a ? "brightness(.88)" : "none";
+    c.style.boxShadow = a ? "" : "0 25px 60px rgba(15,23,42,.28)";
+    c.style.pointerEvents = a > 2 ? "none" : "auto";
+  });
+}
+const go = dir => { const n = vis().length; if (n) { active = (active + dir + n) % n; layout(); } };
+const focusCard = c => { const k = vis().indexOf(c); if (k === active) openProject(c); else { active = k; layout(); } };
+pcards.forEach(c => {
+  c.addEventListener("click", () => { if (!moved) focusCard(c); });
+  c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); focusCard(c); } });
+});
+$("#proj-prev").onclick = () => go(-1);
+$("#proj-next").onclick = () => go(1);
+let sx = 0;
+stage.addEventListener("pointerdown", e => { sx = e.clientX; moved = false; });
+stage.addEventListener("pointerup", e => { const dx = e.clientX - sx; if (Math.abs(dx) > 50) { moved = true; go(dx < 0 ? 1 : -1); } });
+stage.addEventListener("pointerenter", e => hovering = e.pointerType === "mouse");
+stage.addEventListener("pointerleave", () => hovering = false);
+new IntersectionObserver(es => inView = es[0].isIntersecting, {threshold: .25}).observe(stage);
+if (!reduceMotion) setInterval(() => { if (inView && !hovering && !stack.length) go(1); }, 2400);
+addEventListener("resize", layout);
+layout();
+document.addEventListener("click", e => {
+  const c = e.target.closest(".cert-card"), x = e.target.closest("[data-e]");
+  if (x) { const d = EXP[x.dataset.e]; openModal({badge:d[0],title:d[1],sub:d[2],desc:d[3]}); }
+  if (c) {
+    const a = c.dataset.k === "a", o = (a ? AWARDS : PUBS)[c.dataset.i], k = a ? "ad" : "pd";
+    $("#"+k+"-img").src = o.img; $("#"+k+"-img").style.display = ""; $("#"+k+"-img").parentElement.style.display = ""; $("#"+k+"-badge").textContent = o.badge;
+    $("#"+k+"-title").textContent = o.title.replace(/[\u201c\u201d]/g,'"'); $("#"+k+"-second").textContent = a ? o.desc : o.authors;
+    $("#"+k+"-issuer").textContent = a ? o.issuer : o.venue;
+    openEl($(a ? "#award-detail-modal" : "#pub-detail-modal"));
+  }
+});
+
+/* ================= THEME, MENU, FORM, NAV ================= */
+const root = document.documentElement;
+function setTheme(dark) {
+  root.classList.toggle("dark", dark);
+  $("#sun-icon").classList.toggle("hidden", !dark); $("#moon-icon").classList.toggle("hidden", dark);
+}
+setTheme(false); /* always open in light mode; dark mode only when the nav button is clicked */
+$("#theme-toggle").onclick = () => setTheme(!root.classList.contains("dark"));
+$("#menu-toggle").onclick = () => $("#mobile-menu").classList.toggle("hidden");
+document.querySelectorAll(".mobile-link").forEach(l => l.onclick = () => $("#mobile-menu").classList.add("hidden"));
+
+$("#mail-trigger").addEventListener("click", () => { $("#mail-trigger-wrap").classList.add("hidden"); $("#contact-form").classList.remove("hidden"); });
+$("#contact-form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, st = $("#form-status"), btn = $("#submit-button"), txt = btn.textContent;
+  st.textContent = "Sending your message..."; st.className = "mt-4 text-sm font-semibold text-moss dark:text-mist/75";
+  btn.disabled = true; btn.textContent = "Sending...";
+  try {
+    const r = await fetch(f.action, {method:"POST", body:new FormData(f), headers:{Accept:"application/json"}});
+    if (!r.ok) throw new Error();
+    f.reset(); st.textContent = "Message sent successfully. Thank you!"; st.className = "mt-4 text-sm font-semibold text-coral";
+  } catch (err) {
+    st.textContent = "Message could not be sent. Please try again or email directly."; st.className = "mt-4 text-sm font-semibold text-red-600 dark:text-red-400";
+  } finally { btn.disabled = false; btn.textContent = txt; }
+});
+
+const links = document.querySelectorAll(".nav-link");
+const so = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach(l => l.classList.toggle("active-link", l.getAttribute("href") === "#" + en.target.id)); }), {rootMargin:"-35% 0px -55% 0px"});
+document.querySelectorAll("section[id]").forEach(s => so.observe(s));
+
+/* more boxes get the scroll reveal */
+document.querySelectorAll("#about .grid.grid-cols-3 > div, #skills > div, .open-modal").forEach(el => el.classList.add("reveal"));
+/* boxes that enter together appear one by one (staggered) */
+const ro = new IntersectionObserver(es => {
+  const hit = es.filter(en => en.isIntersecting)
+    .sort((a, b) => (a.target.compareDocumentPosition(b.target) & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1);
+  hit.forEach((en, i) => {
+    const el = en.target, d = Math.min(i, 6) * 150;
+    el.style.transitionDelay = d + "ms";
+    el.classList.add("visible"); ro.unobserve(el);
+    setTimeout(() => { el.style.transitionDelay = ""; }, d + 1000);
+  });
+}, {threshold: .15, rootMargin: "0px 0px -6% 0px"});
+document.querySelectorAll(".reveal").forEach(el => ro.observe(el));
+$("#year").textContent = new Date().getFullYear();
+</script>
+<script>
+/* ===== Effects ===== */
+(function () {
+  const $ = (s, r=document) => r.querySelector(s), $$ = (s, r=document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const fine = matchMedia("(hover:hover) and (pointer:fine)").matches;
+
+  /* Smooth scroll (Lenis) */
+  let lenis = null;
+  if (!reduce && typeof Lenis !== "undefined") {
+    lenis = new Lenis({lerp: 0.085, smoothWheel: true, wheelMultiplier: 0.9, touchMultiplier: 1.5});
+    (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(0);
+    $$(".fixed.inset-0").forEach(m => m.setAttribute("data-lenis-prevent", ""));
+    $$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+      const t = $(a.getAttribute("href")); if (t) { e.preventDefault(); lenis.scrollTo(t, {offset: -70, duration: 1.5}); }
+    }));
+  }
+
+  /* Typing animation */
+  const roles = ["Web Developer", "Researcher"], el = $("#typed");
+  if (reduce) el.textContent = roles[0];
+  else { let r = 0, c = 0, del = false;
+    (function tick(){
+      const w = roles[r]; c += del ? -1 : 1; el.textContent = w.slice(0, c);
+      let wait = del ? 45 : 90;
+      if (!del && c === w.length) { del = true; wait = 1400; }
+      else if (del && c === 0) { del = false; r = (r + 1) % roles.length; wait = 350; }
+      setTimeout(tick, wait);
+    })(); }
+
+  /* Hero description typing */
+  const hd = $("#hero-desc"), full = hd.textContent.trim();
+  hd.style.minHeight = hd.offsetHeight + "px";
+  if (!reduce) {
+    hd.textContent = "";
+    const cur = document.createElement("span"); cur.className = "ml-0.5 animate-pulse text-coral"; cur.textContent = "|";
+    let n = 0;
+    setTimeout(function t(){ n++; hd.textContent = full.slice(0, n); hd.appendChild(cur);
+      if (n < full.length) setTimeout(t, 24); else setTimeout(() => cur.remove(), 2500); }, 900);
+  }
+
+  /* Particle network */
+  const cv = $("#particles"), ctx = cv.getContext("2d"); let pts = [], W, H, mouse = {x: -999, y: -999};
+  function size(){ W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
+    const n = Math.min(70, Math.round(W * H / (innerWidth < 640 ? 22000 : 15000)));
+    pts = Array.from({length: n}, () => ({x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-.5)*.5, vy: (Math.random()-.5)*.5})); }
+  size(); addEventListener("resize", size);
+  addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  document.addEventListener("mouseleave", () => mouse.x = -999);
+  const heroVisible = true;
+  function draw(){
+    const dark = document.documentElement.classList.contains("dark"), hr = $("#home").getBoundingClientRect();
+    ctx.clearRect(0, 0, W, H);
+    if (dark || (hr.bottom > 0 && hr.top < H)) {
+      ctx.save();
+      if (!dark) { const t = Math.max(0, hr.top); ctx.beginPath(); ctx.rect(0, t, W, Math.min(H, hr.bottom) - t); ctx.clip(); }
+      pts.forEach((p, i) => {
+        if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+        ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, 6.283); ctx.fillStyle = "rgba(20,184,166,.7)"; ctx.fill();
+        for (let j = i + 1; j < pts.length; j++) { const q = pts[j], d = Math.hypot(p.x-q.x, p.y-q.y);
+          if (d < 120) { ctx.strokeStyle = `rgba(20,184,166,${.28*(1-d/120)})`; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); } }
+        const dm = Math.hypot(p.x-mouse.x, p.y-mouse.y);
+        if (dm < 150) { ctx.strokeStyle = `rgba(15,118,110,${.5*(1-dm/150)})`; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+      });
+      ctx.restore();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  /* Counters */
+  const co = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; co.unobserve(en.target);
+    const t = +en.target.dataset.count, s = performance.now();
+    (function step(n){ const k = Math.min(1, (n - s) / 1400); en.target.textContent = Math.round(t * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(s); }), {threshold: .6});
+  $$("[data-count]").forEach(c => co.observe(c));
+
+  if (!fine || reduce) return;
+
+  /* Custom cursor ring */
+  const ring = document.createElement("div"); ring.id = "cursor-ring"; document.body.appendChild(ring);
+  let cx = 0, cy = 0, tx = 0, ty = 0;
+  addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; ring.style.opacity = 1; });
+  (function move(){ cx += (tx - cx) * .18; cy += (ty - cy) * .18; ring.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(move); })();
+  document.addEventListener("mouseover", e => ring.classList.toggle("big", !!e.target.closest("a,button,[role=button],.cert-card")));
+
+  /* Magnetic buttons */
+  $$("#home a, #submit-button, #proj-prev, #proj-next").forEach(b => {
+    b.addEventListener("mousemove", e => { const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width/2) * .25}px,${(e.clientY - r.top - r.height/2) * .35}px)`; });
+    b.addEventListener("mouseleave", () => b.style.transform = "");
+  });
+
+  /* Card tilt + spotlight */
+  function tilt(c){
+    c.classList.add("tilt");
+    c.addEventListener("mousemove", e => { const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      c.style.setProperty("--mx", x*100 + "%"); c.style.setProperty("--my", y*100 + "%");
+      c.style.transform = `perspective(800px) rotateX(${(.5 - y) * 12}deg) rotateY(${(x - .5) * 12}deg) scale(1.02)`; });
+    c.addEventListener("mouseleave", () => c.style.transform = "");
+  }
+  $$("#education-grid article, #exp-grid > div, .open-modal, #pub-grid .cert-card, #award-grid .cert-card").forEach(tilt);
+})();
+</script>
+</body>
+</html>
